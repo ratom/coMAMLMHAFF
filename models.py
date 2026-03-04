@@ -3,8 +3,7 @@ models.py
 ---------
 CCoMAML network architectures.
 
-BaseNet  — Meta-learner with dual ResNet-50 / ViT backbone and
-           Multi-Head Attention Feature Fusion (MHAFF).
+BaseNet  — MHAFF model from the paper- https://ieeexplore.ieee.org/document/11037301 .
            Inner-loop adaptable parameters: res_linear, trans_linear, fc.
 
 CoLearner — Auxiliary network f_psi that estimates the gradient
@@ -23,26 +22,6 @@ from .meta_modules import MetaModule, MetaLinear, get_subdict
 
 
 class BaseNet(MetaModule):
-    """Dual-backbone meta-learner (MHAFF).
-
-    Backbone layout
-    ---------------
-    ResNet-50  : layers 0–6 frozen; layer3 + layer4 trainable (outer loop).
-    ViT-B/16   : fully frozen (feature extractor only).
-
-    Adaptable parameters (inner loop — theta)
-    -----------------------------------------
-    res_linear   : 2048 -> 64  projection for ResNet features.
-    trans_linear : 768  -> 64  projection for ViT features.
-    fc           : 64   -> num_classes  classification head.
-
-    Fusion
-    ------
-    Multi-head self-attention over the two 64-d feature sequences.
-
-    Args:
-        num_classes (int): Number of ways (N-way classification head size).
-    """
 
     def __init__(self, num_classes: int) -> None:
         super().__init__()
