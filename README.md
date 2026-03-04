@@ -113,21 +113,6 @@ Saved to `save_dir` (default: `weights/CCoMAML/`):
 | `epoch_XXX_base_model.pt` | Per-epoch BaseNet snapshot |
 | `epoch_XXX_colearner.pt` | Per-epoch CoLearner snapshot |
 
----
-
-## Model Architecture
-
-**BaseNet (Meta-Learner)**
-- ResNet-50 backbone — layers 0–6 frozen; layer3 + layer4 trainable
-- ViT-B/16 (`google/vit-base-patch16-224-in21k`) — fully frozen
-- MetaLinear projection heads (inner-loop adaptable): 2048→64, 768→64
-- Multi-head self-attention fusion (8 heads, embed dim 64)
-- MetaLinear classification head: 64→N
-
-**CoLearner**
-- Two conv blocks (3×3, BN, ReLU) + AdaptiveAvgPool → 64×7×7
-- Auxiliary classification head for $L_{co}$
-- Gradient correction MLP: fuses pooled features + $\phi_{i-1}'$ → $\Delta g_i$
 
 ---
 
@@ -136,3 +121,8 @@ Saved to `save_dir` (default: `weights/CCoMAML/`):
 - Python ≥ 3.9
 - PyTorch ≥ 2.0
 - See `requirements.txt` for full list
+
+---
+
+## Contact
+If you have any questions, suggestions or need assistance, please don't hesitate to contact me at dulalatom@gmail.com
