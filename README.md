@@ -1,6 +1,6 @@
 # CCoMAML — Cooperative MAML for Cattle Identification
 
-Few-shot cattle muzzle identification using Cooperative Model-Agnostic Meta-Learning (CCoMAML) with a dual ResNet-50 / ViT backbone and Multi-Head Attention Feature Fusion (MHAFF).
+Few-shot cattle muzzle identification using Cooperative Model-Agnostic Meta-Learning (CCoMAML).
 
 ---
 
