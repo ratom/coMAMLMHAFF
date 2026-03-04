@@ -1,0 +1,41 @@
+# configs/default.yaml
+# --------------------
+# Default hyperparameters for CCoMAML training.
+# Override any value via command-line: --key value
+#
+# Hyperparameter -> paper symbol mapping
+# ---------------------------------------
+#   lr_inner     = alpha    (Eq. inner_loop)
+#   meta_lr      = beta     (Eq. augmented_update)
+#   co_lr        = beta_co  (Eq. co_learner_update)
+#   loss_scaling = gamma    (Eq. total_loss)
+#   mu           = mu       (Eq. augmented_gradient)
+#   weight_decay = R_L2     (L2 regularisation)
+
+# --- Data ---
+train_folder: "data/train"
+val_folder:   "data/val"
+
+# --- Episode setup ---
+num_ways:    5
+num_shots:   5
+num_queries: 5
+episodes_per_epoch: 1000   # virtual episodes sampled per epoch
+
+# --- Training ---
+num_epochs:          200
+batch_size:          16    # episodes per DataLoader batch
+inner_updates:       1
+early_stop_patience: 10
+
+# --- Optimiser hyperparameters ---
+lr_inner:     0.01    # alpha
+meta_lr:      0.0001  # beta
+co_lr:        0.0001  # beta_co
+weight_decay: 0.00001 # R_L2
+loss_scaling: 0.2     # gamma
+mu:           1       # gradient correction magnitude
+
+# --- Infrastructure ---
+device:   "cuda:0"
+save_dir: "weights/CCoMAML"
